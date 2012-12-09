@@ -1,0 +1,56 @@
+a,
+a:link,
+a:visited {
+	text-decoration: none;
+	color: text-dark;
+}
+a:hover {
+	color: darken(text-dark, 20%);
+}
+a:active {
+	outline: none;
+}
+
+.post-title a:hover {
+	border-bottom: 1px solid text-red;
+	color: text-red;
+}
+
+.content {
+	a,
+	a:link,
+	a:visited {
+		text-decoration: none;
+		color: text-red;
+	}
+	a:hover {
+		border-bottom: 1px solid text-red;
+		color: text-dark;
+	}
+}
+
+.the-footer {
+	a,
+	a:link,
+	a:visited {
+		border-bottom: 1px dotted text-light;
+		text-decoration: none;
+		color: text-light;
+	}
+	a:hover {
+		border-bottom: 0 none;
+		color: lighten(text-light, 20%);
+	}
+// the-footer 
+}
+.has-icon,
+.has-icon:link,
+.has-icon:visited {
+	border-bottom: 0 none !important;
+	-webkit-transition-duration: 0.2s;
+	-moz-transition-duration: 0.2s;
+	transition-duration: 0.2s;
+}
+.has-icon:hover {
+	color: text-red !important;
+}

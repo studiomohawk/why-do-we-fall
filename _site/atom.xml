@@ -1,0 +1,175 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+	<link rel="hub" href="https://pubsubhubbub.appspot.com"/>
+	<title>Why Do We Fall? | </title>
+	<link href="http://why.dowefall.com/atom.xml" rel="self"/>
+	<link href="http://why.dowefall.com"/>
+	<updated>2012-12-09T20:09:58+09:00</updated>
+	<id>http://css.studiomohawk.com/</id>
+	<author>
+		<name>Yuya Saito</name>
+		<email>cssradar@gmail.com</email>
+	</author>
+	
+		<entry>
+			<title>font-size using rem with fallback in Stylus</title>
+			<link href="http://why.dowefall.com/stylus/2012/12/08/font-size-using-rem-with-fallback-in-stylus/"/>
+			<updated></updated>
+			<id>http://why.dowefall.com/stylus/2012/12/08/font-size-using-rem-with-fallback-in-stylus</id>
+			<content type="html">
+				&lt;p&gt;TJ Holowaychuk, the creator of &lt;a href=&quot;http://learnboost.github.com/stylus/&quot;&gt;Stylus&lt;/a&gt; said on the video &lt;a href=&quot;https://vimeo.com/33462524&quot;&gt;“Stylus - the most CSS-like higher level language”&lt;/a&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Stylus to be transparent when you what it to be.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Today I attempt to glimpse this “transparent” side of Stylus by making a mixin.&lt;/p&gt;
+
+&lt;h2&gt;tl;dr&lt;/h2&gt;
+
+&lt;div&gt;&lt;div class=&quot;CodeRay&quot;&gt;
+  &lt;div class=&quot;code&quot;&gt;&lt;pre&gt;// Font-size using rem with fallback
+// Use px to define font size.
+// This will calculate rem value for you.
+font-size(n)
+  if unit(n) is 'px'
+    font-size: n
+    font-size: (remove-unit(n) / 10) rem
+  else
+    error('Use px as unit')
+
+// Usage
+body
+  font-size: 16px
+// or
+body {
+  font-size: 16px;
+}
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;After compile:&lt;/p&gt;
+
+&lt;div&gt;&lt;div class=&quot;CodeRay&quot;&gt;
+  &lt;div class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;type&quot;&gt;body&lt;/span&gt; {
+  &lt;span class=&quot;key&quot;&gt;font-size&lt;/span&gt;: &lt;span class=&quot;float&quot;&gt;16px&lt;/span&gt;;
+  &lt;span class=&quot;key&quot;&gt;font-size&lt;/span&gt;: &lt;span class=&quot;float&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;float&quot;&gt;.6&lt;/span&gt;&lt;span class=&quot;value&quot;&gt;rem&lt;/span&gt;;
+}
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h2&gt;Explanation&lt;/h2&gt;
+
+&lt;p&gt;In Stylus, a mixin can be defined like CSS properties and arguments for mixin can be passed like CSS value.&lt;br /&gt;
+This is what TJ Holowaychuk means when he said “Stylus can be transparent”.&lt;/p&gt;
+
+&lt;p&gt;To be honest, I’ve found about this design by accident when I defined mixin name same as CSS properties.&lt;/p&gt;
+
+&lt;p&gt;While I like this “transparent” way, it is very easy to forget which properties are mixins.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;if unit(n) is 'px'&lt;/code&gt; is there because of that.&lt;br /&gt;
+If I forget all about it and use unit other than &lt;code&gt;px&lt;/code&gt;, Stylus will give me an error.&lt;/p&gt;
+
+&lt;h2&gt;Failure(s)&lt;/h2&gt;
+
+&lt;p&gt;When I wrote:  &lt;/p&gt;
+
+&lt;div&gt;&lt;div class=&quot;CodeRay&quot;&gt;
+  &lt;div class=&quot;code&quot;&gt;&lt;pre&gt;// Error!
+`if unit(n) is a 'px' 
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;as &lt;a href=&quot;http://learnboost.github.com/stylus/docs/conditionals.html&quot;&gt;examples on the document&lt;/a&gt;, Stylus gave me an error.&lt;br /&gt;
+I found the solution in &lt;a href=&quot;https://github.com/LearnBoost/stylus/blob/master/lib/functions/index.styl#L77&quot;&gt;source code on functions in Stylus&lt;/a&gt;(where I also find out about &lt;code&gt;remove-unit()&lt;/code&gt; function, by the way).&lt;/p&gt;
+
+&lt;div&gt;&lt;div class=&quot;CodeRay&quot;&gt;
+  &lt;div class=&quot;code&quot;&gt;&lt;pre&gt;// Correct!
+`if unit(n) is 'px'
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Difference between the two is &lt;strong&gt;a&lt;/strong&gt;.&lt;br /&gt;
+I still have no idea when I need &lt;strong&gt;a&lt;/strong&gt; in conditionals.&lt;br /&gt;
+If somebody can tell me, please do(&lt;a href=&quot;http://twitter.com/cssradar&quot;&gt;Twitter@cssradar&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;This reminds me when I have(and still do) problem with articles in English.&lt;/p&gt;
+
+				&lt;hr /&gt;
+				&lt;h5&gt;Elsewhere&lt;/h5&gt;
+				&lt;ul&gt;
+					&lt;li&gt;&lt;a href=&quot;http://twitter.com/#!/cssradar&quot; rel=&quot;me&quot; title=&quot;cssradar@twitter&quot;&gt;cssradar@twitter&lt;/a&gt; / 1日5件以内のウェブデザイン情報をつぶやきます&lt;/li&gt;
+					&lt;li&gt;&lt;a href=&quot;http://tinyletter.com/cssradar&quot; rel=&quot;me&quot; title=&quot;Newsletter&quot;&gt;CSS Radar Newsletter&lt;/a&gt; / CSS Radarニュースレター。Twitterまとめ + α&lt;/li&gt;
+					&lt;li&gt;&lt;a href=&quot;https://plus.google.com/b/109704095110060909968/&quot; rel=&quot;me&quot; title=&quot;Google+ Page&quot;&gt;Google +&lt;/a&gt; / どんな風に使っていくかアイデア募集中&lt;/li&gt;
+				&lt;/ul&gt;
+			</content>
+		</entry>
+	
+		<entry>
+			<title>Fail First to Learn</title>
+			<link href="http://why.dowefall.com/log/2012/12/08/fail-first-learning/"/>
+			<updated></updated>
+			<id>http://why.dowefall.com/log/2012/12/08/fail-first-learning</id>
+			<content type="html">
+				&lt;p&gt;As Remy Sharp said at &lt;a href=&quot;http://www.netmagazine.com/interviews/remy-sharp-learning-breaking-stuff&quot;&gt;.net&lt;/a&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The only way you learn is by doing it and failing, breaking it and seeing how it goes back together&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;HTML, CSS and JavaScript.&lt;br /&gt;
+These are my primary tools to solve problems.&lt;/p&gt;
+
+&lt;p&gt;Learning a language brings me back the first day I arrived at airport in Salt Lake City, Utah.&lt;/p&gt;
+
+&lt;p&gt;Let’s say I was not a “smart guys” who thought I should study aboard.&lt;br /&gt;
+I only knew a handful of English words back then. So I’ve kept failing. &lt;/p&gt;
+
+&lt;p&gt;Like every single day for almost 5 years.&lt;/p&gt;
+
+&lt;p&gt;But I was curious enough to stay there.&lt;br /&gt;
+And I’ve graduated.&lt;/p&gt;
+
+&lt;p&gt;I’m not gonna say my English is perfect and that’s not the point.&lt;/p&gt;
+
+&lt;p&gt;The point is: &lt;strong&gt;I’ve learned how to learn.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Some might say, after all those 5 years in university, after spending &lt;em&gt;that&lt;/em&gt; much money to study abroad, only thing I’ve learned is &lt;strong&gt;that&lt;/strong&gt;?&lt;/p&gt;
+
+&lt;p&gt;For me, &lt;strong&gt;that&lt;/strong&gt; matters a lot.  &lt;/p&gt;
+
+&lt;p&gt;I become more comfortable around failures when I’m learning something new.  &lt;/p&gt;
+
+&lt;p&gt;I still hate to fail.&lt;br /&gt;
+That’s why I try hard.  &lt;/p&gt;
+
+&lt;p&gt;And that’s how I get to speak English.&lt;br /&gt;
+And that’s how I get to good at what I do.  &lt;/p&gt;
+
+&lt;p&gt;Every time I read some of my heroes/heroins in this industries say “Fail fist to learn” kind of thing, I become more confident on &lt;em&gt;“This is the only way to learn.”&lt;/em&gt; feeling of mine.  &lt;/p&gt;
+
+&lt;p&gt;In the movie, Batman Begins, Alfred Pennyworth said:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Why do we fall, sir?&lt;br /&gt;
+So that we can learn to pick ourselves up.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Watch me fall and pick something up.
+And hope you do the same.&lt;/p&gt;
+
+
+				&lt;hr /&gt;
+				&lt;h5&gt;Elsewhere&lt;/h5&gt;
+				&lt;ul&gt;
+					&lt;li&gt;&lt;a href=&quot;http://twitter.com/#!/cssradar&quot; rel=&quot;me&quot; title=&quot;cssradar@twitter&quot;&gt;cssradar@twitter&lt;/a&gt; / 1日5件以内のウェブデザイン情報をつぶやきます&lt;/li&gt;
+					&lt;li&gt;&lt;a href=&quot;http://tinyletter.com/cssradar&quot; rel=&quot;me&quot; title=&quot;Newsletter&quot;&gt;CSS Radar Newsletter&lt;/a&gt; / CSS Radarニュースレター。Twitterまとめ + α&lt;/li&gt;
+					&lt;li&gt;&lt;a href=&quot;https://plus.google.com/b/109704095110060909968/&quot; rel=&quot;me&quot; title=&quot;Google+ Page&quot;&gt;Google +&lt;/a&gt; / どんな風に使っていくかアイデア募集中&lt;/li&gt;
+				&lt;/ul&gt;
+			</content>
+		</entry>
+	
+</feed>

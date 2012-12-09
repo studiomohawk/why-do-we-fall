@@ -1,0 +1,182 @@
+/* ==========================================================================
+primary: Yuya Saito @ http://twitter.com/cssradar
+============================================================================= */
+
+html {
+	background: url(n-100-30-5) repeat 0 0 bg-light;
+	color: text-dark;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+	-webkit-overflow-scrolling: touch;
+}
+.unit-inner {
+	column(3);
+	margin: 0 auto;
+}
+.unit-logo {
+	padding: 4em 0 4.5em;
+}
+.logo {
+	font-family: 'Yanone Kaffeesatz', sans-serif;
+	font-weight: 700;
+	margin-bottom: 0;
+	line-height: 1;
+	border-bottom: 3px solid #D3D3D3;
+}
+.the-article .hd > .group {
+	margin-bottom: 31px;
+	margin-bottom: 3.1rem;
+}
+.post-title {
+	margin-bottom: 0;
+}
+.date-pub, .byline {
+	color: text-fade;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	display: inline-block;
+	position: relative;
+	top: -6px;
+	margin: 0;
+}
+.date-pub.update:after {
+	content: '/';
+	display: inline-block;
+}
+.unit-nav {
+	background: rgba(204, 204, 204, 0.3);
+	color: #BDBDBD;
+}
+.unit-nav ul {
+	list-style: none;
+	padding-left: 0;
+	margin-bottom: 0;
+	text-align: right;
+	letter-spacing: -0.31em;
+	*letter-spacing: normal;
+	word-spacing: -0.43em;
+}
+.unit-nav li {
+	display: inline-block;
+	border-right: 1px solid rgba(204, 204, 204, 0.3);
+	border-left: 1px solid rgba(204, 204, 204, 0.3);
+	width: 50px;
+	width: 5rem;
+	letter-spacing: normal;
+	word-spacing: normal;
+	vertical-align: top;
+}
+.unit-nav .old {
+	margin-right: 1px;
+	border-left: 1px solid rgba(204, 204, 204, 0.3);
+}
+.unit-nav .tweet {
+	border: 0 none;
+	position: relative;
+	top: 4px;
+}
+.unit-nav a {
+	display: block;
+	font-weight: bold;
+	facebook();
+	text-align: center;
+	width: 50px;
+	width: 5rem;
+	height: 50px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-transition-duration: 0.2s;
+	-moz-transition-duration: 0.2s;
+	transition-duration: 0.2s;
+	-webkit-user-select:none;
+	-moz-user-select:none;
+	-ms-user-select:none;
+	user-select:none;
+}
+.unit-nav a:hover, .unit-nav a:focus {
+	background: #1d1f21;
+	color: #fafafa;
+}
+.the-footer {
+	background: url(n-100-50-7) repeat 0 0 bg-dark;
+	color: text-light;
+	.unit {
+		padding: 3.6rem 0;
+	}
+}
+.madeintokyo {
+	margin-bottom: 0;
+}
+
+/* ==========================================================================
+page specific
+============================================================================= */
+
+/* post
+============================================================================= */
+
+.page-post {
+	h1, .h1 {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+	.content ul {
+		list-style: square;
+		padding-left: 0;
+	}
+	.content ol {
+		list-style: decimal;
+		padding-left: 0;
+	}
+	.content img.right {
+		float: right;
+		margin-left: 3.2rem;
+	}
+	.content img.left {
+		float: left;
+		margin-right: 3.2rem;
+	}
+	.content img.huge {
+		max-width: 100%;
+	}
+	p code, li code {
+		monospace();
+		margin: 0 2px;
+		padding: 0px 5px;
+		border: 1px solid #EAEAEA;
+		background-color: #F8F8F8;
+		border-radius: 3px;
+	}
+	.highlight pre {
+		color: #fafafa;
+		background-color: #1d1f21;
+		margin: 0;
+		padding: 1.8rem;
+	}
+	pre code {
+		monospace();
+	}
+}
+
+/* ==========================================================================
+media queries
+============================================================================= */
+@media only screen and (min-width: 480px) {
+/* 480 =================================================== */
+	.unit-inner {
+		column(5);
+	}
+}
+@media only screen and (min-width: 600px) {
+/* 600 =================================================== */
+	.unit-inner {
+		column(6);
+	}
+}
+@media only screen and (min-width: 768px) {
+/* 768 =================================================== */
+	.unit-inner {
+		column(8);
+	}
+}

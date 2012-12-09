@@ -1,0 +1,16 @@
+<footer class="the-footer">
+<div class="unit">
+	<div class="unit-inner">
+	{% if page.layout != 'home' %}
+	{% include module/home.html %}
+	{% include module/recent.html %}
+	{% endif %}
+	{% include module/question.html %}
+	{% include module/about.html %}
+	{% include module/elsewhere.html %}
+	<p class="madeintokyo">
+	Build Proudly in Tokyo.
+	</p>
+	</div><!-- unit-inner -->
+</div><!-- unit -->
+</footer>

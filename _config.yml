@@ -1,0 +1,25 @@
+# Presentation Settings
+
+sitename:  Why Do We Fall?
+desc:      So we might learn to pick ourselves up.
+url:       http://why.dowefall.com
+
+# TOOL Settings
+ga: 
+
+# System Settings
+
+pygments:                  true
+markdown:                  kramdown
+permalink:                 pretty
+kramdown:
+  auto_ids:                false
+  use_coderay:             true
+  coderay:
+    coderay_wrap:          div
+    coderay_line_numbers:
+    coderay_tab_width:     2
+    coderay_css:           class
+
+exclude: [LICENSE, README.markdown, jakefile, .rbenv-version, tasks, node_modules, npm-debug.log, package.json, grunt.js, grunt-aws.json]
+include: [attempt]

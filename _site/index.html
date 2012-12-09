@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  
+  <title itemprop="name" property="og:title" content="Why Do We Fall?">Why Do We Fall?</title>
+  <meta itemprop="description" name="description" property="og:description" content="So we might learn to pick ourselves up.">
+	<meta property="og:type" content="blog">
+	<meta property="og:url" content="http://why.dowefall.com">
+	
+  <meta property="og:image" content="http://why.dowefall.com/graph.png">
+  <meta property="og:site_name" content="Why Do We Fall?">
+  <meta name="viewport" content="width=device-width">
+  <link href="http://why.dowefall.com/atom.xml" rel="alternate" title="Why Do We Fall?" type="application/atom+xml">
+  <link rel="stylesheet" href="/asset/style/master.css">
+</head>
+<body>
+
+<div id="page" class="page page-home">
+<header class="the-header">
+<div class="unit unit-logo">
+	<div class="unit-inner">
+		<div class="mod">
+			<div class="inner">
+				<div class="hd"><p class="logo"><a href="/">Why Do We Fall?</a></p></div>
+			</div><!-- inner -->
+		</div><!-- mod -->
+	</div><!-- unit-inner -->
+</div><!-- unit -->
+</header>
+
+
+<div role="main" class="body">
+<div class="unit">
+	<div class="unit-inner">
+	
+<article class="the-article hentry">
+	<div class="mod">
+		<div class="inner">
+			<div class="hd">
+				<div class="group group-title">
+					<h2 class="post-title"><a href="/stylus/2012/12/08/font-size-using-rem-with-fallback-in-stylus/">font-size using rem with fallback in Stylus</a></h2>
+					
+						<time class="date-pub pubdate small" title="2012-12-08T21:15:03+09:00">
+							<span class="label">Published: </span>
+							<span class="month">Dec</span>
+							<span class="day">08</span>
+							<span class="year">2012</span>
+						</time>
+						<p class="byline small">Yuya Saito</p>
+				</div><!-- group -->
+			</div>
+			<div class="bd">
+				<div class="content">
+					<p>TJ Holowaychuk, the creator of <a href="http://learnboost.github.com/stylus/">Stylus</a> said on the video <a href="https://vimeo.com/33462524">“Stylus - the most CSS-like higher level language”</a>:</p>
+
+<blockquote>
+  <p>Stylus to be transparent when you what it to be.</p>
+</blockquote>
+
+<p>Today I attempt to glimpse this “transparent” side of Stylus by making a mixin.</p>
+
+<h2>tl;dr</h2>
+
+<div><div class="CodeRay">
+  <div class="code"><pre>// Font-size using rem with fallback
+// Use px to define font size.
+// This will calculate rem value for you.
+font-size(n)
+  if unit(n) is 'px'
+    font-size: n
+    font-size: (remove-unit(n) / 10) rem
+  else
+    error('Use px as unit')
+
+// Usage
+body
+  font-size: 16px
+// or
+body {
+  font-size: 16px;
+}
+</pre></div>
+</div>
+</div>
+
+<p>After compile:</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="type">body</span> {
+  <span class="key">font-size</span>: <span class="float">16px</span>;
+  <span class="key">font-size</span>: <span class="float">1</span><span class="float">.6</span><span class="value">rem</span>;
+}
+</pre></div>
+</div>
+</div>
+
+<h2>Explanation</h2>
+
+<p>In Stylus, a mixin can be defined like CSS properties and arguments for mixin can be passed like CSS value.<br />
+This is what TJ Holowaychuk means when he said “Stylus can be transparent”.</p>
+
+<p>To be honest, I’ve found about this design by accident when I defined mixin name same as CSS properties.</p>
+
+<p>While I like this “transparent” way, it is very easy to forget which properties are mixins.</p>
+
+<p><code>if unit(n) is 'px'</code> is there because of that.<br />
+If I forget all about it and use unit other than <code>px</code>, Stylus will give me an error.</p>
+
+<h2>Failure(s)</h2>
+
+<p>When I wrote:  </p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre>// Error!
+`if unit(n) is a 'px' 
+</pre></div>
+</div>
+</div>
+<p>as <a href="http://learnboost.github.com/stylus/docs/conditionals.html">examples on the document</a>, Stylus gave me an error.<br />
+I found the solution in <a href="https://github.com/LearnBoost/stylus/blob/master/lib/functions/index.styl#L77">source code on functions in Stylus</a>(where I also find out about <code>remove-unit()</code> function, by the way).</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre>// Correct!
+`if unit(n) is 'px'
+</pre></div>
+</div>
+</div>
+
+<p>Difference between the two is <strong>a</strong>.<br />
+I still have no idea when I need <strong>a</strong> in conditionals.<br />
+If somebody can tell me, please do(<a href="http://twitter.com/cssradar">Twitter@cssradar</a>).</p>
+
+<p>This reminds me when I have(and still do) problem with articles in English.</p>
+
+				</div>
+			</div>
+		</div><!-- inner -->
+	</div><!-- mod -->
+</article>
+
+
+	</div><!-- unit-inner -->
+</div><!-- unit -->
+</div><!-- body -->
+
+<div class="unit">
+	<div class="unit-inner">
+		<hr>
+		<div class="mod mod-recent-entry">
+	<div class="inner">
+		<div class="hd">
+			<h4 class="h2">Back Number</h4>
+		</div>
+		<div class="bd">
+			<ul>
+			
+			<li>
+				<h6 class="post-title"><a href="/log/2012/12/08/fail-first-learning/" title="Fail First to Learn">Fail First to Learn</a></h6>
+			</li>
+			
+			</ul>
+		</div>
+	</div><!-- inner -->
+</div><!-- mod -->
+
+	</div><!-- unit-inner -->
+</div><!-- unit -->
+
+<footer class="the-footer">
+<div class="unit">
+	<div class="unit-inner">
+	
+	<div class="mod mod-question">
+	<div class="inner">
+		<div class="hd">
+			<h4 class="h2">Questions?</h4>
+		</div>
+		<div class="bd">
+			<p>
+			<a class="has-icon" href="https://github.com/studiomohawk/CSS-Radar/issues/new">
+				<i class='icon-github'></i> Ask Me on Github
+      </a>
+			</p>
+		</div>
+	</div><!-- inner -->
+</div><!-- mod -->
+
+	<div class="mod mod-about">
+	<div class="inner">
+		<div class="hd">
+			<h4 class="h2">About</h4>
+		</div>
+		<div class="bd">
+			<p>
+				My name is Yuya Saito and I work at <a href="http://www.cyberagent.info/">CyberAgent</a> in Tokyo, Japan. I love to build things to solve problems.
+			</p>
+			<p>
+				This site is for me to learn new things by <strong>failing</strong>.<br>
+				I hate to fail, but also I believe that's the only way to learn.
+			</p>
+		</div>
+	</div><!-- inner -->
+</div><!-- mod -->
+
+	<div class="mod mod-elsewhere">
+	<div class="inner">
+		<div class="hd">
+			<h4 class="h2">Elsewhere</h4>
+		</div>
+		<div class="bd">
+			<ul class="list-square">
+				<li><a href="http://twitter.com/#!/cssradar" rel="me" title="cssradar@twitter">cssradar@twitter</a></li>
+				<li><a href="http://seven.studiomohawk.com/" rel="me" title="Seven">Seven</a></li>
+				<li><a href="http://enja.studiomohawk.com/" rel="me" title="en.ja">en.ja</a></li>
+				<li><a href="http://publicdraft.studiomohawk.com/" rel="me" title="Public Draft">Public Draft</a></li>
+				<li><a href="https://github.com/studiomohawk" rel="me" title="github">github</a></li>
+				<li><a href="http://pinboard.in/u:studiomohawk" rel="me" title="Pinboard">Pinboard</a></li>
+				<li><a href="http://500px.com/studiomohawk/photos" rel="me" title="500px">500px</a></li>
+			</ul>
+		</div>
+	</div><!-- inner -->
+</div><!-- mod -->
+
+	<p class="madeintokyo">
+	Build Proudly in Tokyo.
+	</p>
+	</div><!-- unit-inner -->
+</div><!-- unit -->
+</footer>
+
+</div><!-- #page -->
+<script src="/asset/script/script.js"></script>
+<!-- end scripts -->
+<script>
+var _gaq=[['_setAccount',''],['_trackPageview']];
+(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+</body>
+</html>
+

@@ -1,0 +1,16 @@
+<div class="mod mod-recent-entry">
+	<div class="inner">
+		<div class="hd">
+			<h4 class="h2">Back Number</h4>
+		</div>
+		<div class="bd">
+			<ul>
+			{% for post in site.posts offset: 1 %}
+			<li>
+				<h6 class="post-title"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h6>
+			</li>
+			{% endfor %}
+			</ul>
+		</div>
+	</div><!-- inner -->
+</div><!-- mod -->

@@ -1,0 +1,102 @@
+@import "_site-setting"
+@import "_mixin"
+@import "_base/_normalize"
+@import "_base/_default"
+@import "_base/_link"
+@import "_base/_font-family"
+@import "_layout"
+@import "_presentation"
+
+// Main Style for attempt
+.unit-inner {
+	column(3);
+	margin: 0 auto;
+}
+.unit-logo {
+	background: url(n-100-50-7) repeat 0 0 bg-dark;
+	color: text-light;
+	font-size: 1.6em;
+	line-height: 2;
+	paragraph();
+	a,
+	a:link,
+	a:visited {
+		text-decoration: none;
+		color: text-light;
+	}
+	a:hover {
+		color: text-red;
+	}
+	.arrow {
+		background: rgba(0, 0, 0, 0.8);
+		display: inline-block;
+		font-weight: bold;
+		facebook();
+		text-align: center;
+		width: 2em;
+	}
+	.arrow:hover, .arrow a:focus {
+		background: rgba(51, 51, 51, 0.8);
+		color: #fafafa;
+	}
+	.inner {
+		position: relative;
+		text-align: center;
+	}
+	.bd, .hd {
+		display: inline;
+	}
+	.bd {
+		position: absolute;
+		left: 0;
+		text-align: left;
+	}
+	.hd {
+	}
+}
+.logo {
+	font-size: 1em;
+	margin-top: 0;
+	margin-bottom: 0;
+	font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+.attempt {
+	background: url(n-100-50-7) repeat 0 0 rgba(51, 51, 51, 0.2);
+	padding: 1em;
+}
+.label {
+	margin: 0;
+	color: text-fade;
+	font-family: 'Yanone Kaffeesatz', sans-serif;
+  font-size: 1.375em; /* equiv 22px */
+  line-height: 1.4545em;
+}
+.post-title {
+	font-family: 'Yanone Kaffeesatz', sans-serif;
+  font-size: 2.5em; /* equiv 40px */
+  line-height: 1.6em;
+	margin: 0;
+}
+/* ==========================================================================
+media queries
+============================================================================= */
+@media only screen and (min-width: 480px) {
+/* 480 =================================================== */
+	.unit-inner {
+		column(5);
+	}
+}
+@media only screen and (min-width: 600px) {
+/* 600 =================================================== */
+	.unit-inner {
+		column(6);
+	}
+}
+@media only screen and (min-width: 768px) {
+/* 768 =================================================== */
+	.unit-inner {
+		column(8);
+	}
+}
+
+@import "_helper" // keep this at bottom
