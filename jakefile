@@ -63,6 +63,15 @@ task('write', function(title) {
 		stream.write('category:\n');
 		stream.write('author:\n');
 		stream.write('---\n');
+		stream.write('\n');
+		stream.write('## tl;dr');
+		stream.write('\n');
+		stream.write('## Explanation');
+		stream.write('\n');
+		stream.write('## Failure(s)');
+		stream.write('\n');
+		stream.write('## Appendix');
+		stream.write('\n');
 	});
 });
 

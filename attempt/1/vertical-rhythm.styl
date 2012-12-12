@@ -1,0 +1,90 @@
+// Settings
+// Override this settings via something like site-settings.styl
+
+$rembase = 16
+$ratio = 1.625
+$line-height-base = $rembase * $ratio
+$devmode = false
+
+// mixins
+font-size(n, flag = true)
+	if unit(n) is 'px'
+		font-size: n
+		font-size: (remove-unit(n) / $rembase) rem
+		if flag
+			line-height: -getlineheight()
+	else
+		error('Use px as unit')
+
+line($n)
+	margin: 0 0 ($n * ($line-height-base px)) 0
+	margin: 0 0 ($n * ($line-height-base / $rembase) rem) 0
+
+-getlineheight()
+	return remove-unit(@font-size) * ($line-height-base / (remove-unit(@font-size) * $rembase))
+
+guide()
+	unless $devmode is false
+		background: -moz-linear-gradient(top, #BA9B9A 1px, transparent 1px );
+		background-image: -webkit-linear-gradient(#BA9B9A 1px, transparent 1px);
+		background-size: 100% ($line-height-base px);
+
+.demo {
+	font-size: 16px; // Assuming 16px...
+	guide()
+
+p,
+ul,
+ol,
+dl,
+blockquote,
+pre,
+td,
+th,
+label,
+textarea,
+caption {
+  line: 1
+}
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+h1,
+.h1 {
+	// 64px
+	font-size: 64px;
+	line: 1;
+}
+h2,
+.h2 {
+	// 48px
+	font-size: 48px;
+	line: 1;
+}
+h3,
+.h3 {
+	// 32px
+	font-size: 32px;
+	line: 1;
+}
+h4,
+.h4 {
+	// 28px
+	font-size: 28px;
+	line: 1.25;
+}
+h5,
+.h5 {
+	// 24px
+	font-size: 24px;
+	line: 0.5;
+}
+h6,
+.h6 {
+	// 16px
+	font-size: 16px;
+	line: 1;
+}
+
+}

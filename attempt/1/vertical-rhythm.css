@@ -1,0 +1,85 @@
+.demo {
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 1.625;
+  background: -moz-linear-gradient(top, #ba9b9a 1px, transparent 1px);
+  background-image: -webkit-linear-gradient(#ba9b9a 1px, transparent 1px);
+  background-size: 100% 26px;
+}
+.demo p,
+.demo ul,
+.demo ol,
+.demo dl,
+.demo blockquote,
+.demo pre,
+.demo td,
+.demo th,
+.demo label,
+.demo textarea,
+.demo caption {
+  margin: 0 0 26px 0;
+  margin: 0 0 1.625rem 0;
+}
+.demo h1,
+.demo .h1,
+.demo h2,
+.demo .h2,
+.demo h3,
+.demo .h3,
+.demo h4,
+.demo .h4,
+.demo h5,
+.demo .h5,
+.demo h6,
+.demo .h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.demo h1,
+.demo .h1 {
+  font-size: 64px;
+  font-size: 4rem;
+  line-height: 1.625;
+  margin: 0 0 26px 0;
+  margin: 0 0 1.625rem 0;
+}
+.demo h2,
+.demo .h2 {
+  font-size: 48px;
+  font-size: 3rem;
+  line-height: 1.625;
+  margin: 0 0 26px 0;
+  margin: 0 0 1.625rem 0;
+}
+.demo h3,
+.demo .h3 {
+  font-size: 32px;
+  font-size: 2rem;
+  line-height: 1.625;
+  margin: 0 0 26px 0;
+  margin: 0 0 1.625rem 0;
+}
+.demo h4,
+.demo .h4 {
+  font-size: 28px;
+  font-size: 1.75rem;
+  line-height: 1.625;
+  margin: 0 0 32.5px 0;
+  margin: 0 0 2.03125rem 0;
+}
+.demo h5,
+.demo .h5 {
+  font-size: 24px;
+  font-size: 1.5rem;
+  line-height: 1.625;
+  margin: 0 0 13px 0;
+  margin: 0 0 0.8125rem 0;
+}
+.demo h6,
+.demo .h6 {
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 1.625;
+  margin: 0 0 26px 0;
+  margin: 0 0 1.625rem 0;
+}

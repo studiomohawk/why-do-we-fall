@@ -4,12 +4,217 @@
 	<title>Why Do We Fall? | </title>
 	<link href="http://why.dowefall.com/atom.xml" rel="self"/>
 	<link href="http://why.dowefall.com"/>
-	<updated>2012-12-09T20:28:01+09:00</updated>
+	<updated>2012-12-13T00:09:53+09:00</updated>
 	<id>http://css.studiomohawk.com/</id>
 	<author>
 		<name>Yuya Saito</name>
 		<email>cssradar@gmail.com</email>
 	</author>
+	
+		<entry>
+			<title>Vertical Rhythm Boilerplate with Stylus</title>
+			<link href="http://why.dowefall.com/stylus/2012/12/09/vertical-rhythm-boilerplate-with-stylus/"/>
+			<updated></updated>
+			<id>http://why.dowefall.com/stylus/2012/12/09/vertical-rhythm-boilerplate-with-stylus</id>
+			<content type="html">
+				&lt;h2&gt;tl;dr&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://localhost:4000/attempt/1/vertical-rhythm.html&quot;&gt;Demo&lt;/a&gt;&lt;/strong&gt;&lt;br /&gt;
+&lt;em&gt;This is &lt;strong&gt;FAR FROM&lt;/strong&gt; perfect and it’s just a starting point.&lt;/em&gt;&lt;/p&gt;
+
+&lt;div&gt;&lt;div class=&quot;CodeRay&quot;&gt;
+  &lt;div class=&quot;code&quot;&gt;&lt;pre&gt;// Settings
+// Override this settings via something like site-settings.styl
+
+$rembase = 16 // Most browser's default size
+$ratio = 1.625 // Almost golden ratio
+$line-height-base = $rembase * $ratio // You don't need to change this
+$devmode = false // Set this true to show vertical grid
+
+// mixins
+
+// It calculates line-height when flag is true
+// font-size must be declared with px
+font-size(n, flag = true)
+  if unit(n) is 'px'
+    font-size: n
+    font-size: (remove-unit(n) / $rembase) rem
+    if flag
+      line-height: -getlineheight()
+  else
+    error('Use px as unit')
+
+// margin-bottom using rem with fallback
+line($n)
+  margin: 0 0 ($n * ($line-height-base px)) 0
+  margin: 0 0 ($n * ($line-height-base / $rembase) rem) 0
+
+// This is a function and by convention, starts with hyphen
+-getlineheight()
+  return remove-unit(@font-size) * ($line-height-base / (remove-unit(@font-size) * $rembase))
+
+// Vertical guide using gradient
+guide()
+  unless $devmode is false
+    background: -moz-linear-gradient(top, #BA9B9A 1px, transparent 1px );
+    background-image: -webkit-linear-gradient(#BA9B9A 1px, transparent 1px);
+    background-size: 100% ($line-height-base px);
+
+
+//
+html {
+  font-size: 16px; // Assuming 16px...
+  guide()
+
+p,
+ul,
+ol,
+dl,
+blockquote,
+pre,
+td,
+th,
+label,
+textarea,
+caption {
+  line: 1
+}
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+h1,
+.h1 {
+  font-size: 64px;
+  line: 1;
+}
+h2,
+.h2 {
+  font-size: 48px;
+  line: 1;
+}
+h3,
+.h3 {
+  font-size: 32px;
+  line: 1;
+}
+h4,
+.h4 {
+  font-size: 28px;
+  line: 1.25;
+}
+h5,
+.h5 {
+  font-size: 24px;
+  line: 0.5;
+}
+h6,
+.h6 {
+  font-size: 16px;
+  line: 1;
+}
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h2&gt;Explanation&lt;/h2&gt;
+
+&lt;p&gt;My math sucks.&lt;br /&gt;
+Therefore most of the calcurations were based on &lt;a href=&quot;http://gregrickaby.com/2012/10/web-typography-using-rem.html&quot;&gt;Web Typography Using The Golden Ratio and REM’s&lt;/a&gt;.
+It is straightforward to see what’s going on.&lt;/p&gt;
+
+&lt;p&gt;In last &lt;a href=&quot;/stylus/2012/12/08/font-size-using-rem-with-fallback-in-stylus/&quot;&gt;article&lt;/a&gt;, I demonstrated “transparent” design of Stylus.&lt;br /&gt;
+I took that idea further by introducing &lt;code&gt;line&lt;/code&gt; property. As you can see from
+above snippet, &lt;code&gt;line&lt;/code&gt; mixin can be used like CSS property.&lt;br /&gt;
+In my opinion, this mixin &lt;strong&gt;should be&lt;/strong&gt; used as mixin.(ex: line(n))&lt;br /&gt;
+This “transparent” design of Stylus can be helpful when expanding CSS
+properties. However, it is not ideal to use when drastically change CSS syntax.&lt;/p&gt;
+
+&lt;p&gt;For example, &lt;code&gt;font-size&lt;/code&gt; can use &lt;code&gt;rem&lt;/code&gt; unit, but due to browsers which doesn’t
+happened to support this unit, you almost always like to have fallback with px unit.&lt;br /&gt;
+By using &lt;code&gt;font-size&lt;/code&gt; mixin, this problem can be solved without thinking about
+it.  &lt;/p&gt;
+
+&lt;p&gt;When it’s safe to say what you trying to archive should be default behaviour of
+CSS, then it’s ok to use this transparent way to declare mixins.&lt;br /&gt;
+When you’re trying to re-using css properties, then use “mixins” way to declare it.&lt;/p&gt;
+
+&lt;h2&gt;Failure(s)&lt;/h2&gt;
+
+&lt;p&gt;The hardest part of this attempt was clearly a math.&lt;br /&gt;
+The second hardest part was find out how to concatenate unit to variables where multiple values can be used.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;margin: 0 0 ($n * ($line-height-base px)) 0&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Since Stylus seems like it can’t use &lt;code&gt;+&lt;/code&gt; to concatenate unit to value, you need to wrap with parentheses.&lt;br /&gt;
+Above example is somewhat complex looking but &lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;margin: 0 0 $line-height-base px 0&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;this doesn’t work.&lt;br /&gt;
+Say $line-height-base was 26, when you compile this to CSS, you will get&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;margin: 0 0 26 px 0&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Yes, the space is not a typo.  &lt;/p&gt;
+
+&lt;p&gt;Then I tried:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;margin: 0 0 ($line-height-base)px 0&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;it does work when value is single, but this doesn’t work.&lt;br /&gt;
+So I end up with this:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;margin: 0 0 ($line-height-base px) 0&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;It seems parentheses have two purpose in Stylus:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;As you expected, change math operation order&lt;/li&gt;
+  &lt;li&gt;Protect variables from other values&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Oh, and &lt;code&gt;guide()&lt;/code&gt; mixin is very handy I think.&lt;br /&gt;
+I came up with this because &lt;a href=&quot;http://basehold.it/&quot;&gt;Basehold.it&lt;/a&gt; was down when I was trying to use it.　　&lt;/p&gt;
+
+&lt;p&gt;Sometimes, you need to re-invent stuff, because it simply not available when you need it.&lt;/p&gt;
+
+&lt;h2&gt;Appendix&lt;/h2&gt;
+
+&lt;h3&gt;Tools&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://soqr.fr/vertical-rhythm/&quot;&gt;Vertical Rhythm CSS rules for Web Design&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.pearsonified.com/typography/&quot;&gt;Pearsonified’s Golden Ratio Typography Calculator&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.gridlover.net/&quot;&gt;Gridlover&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;Codes&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/jonschlinkert/vertical-rhythm&quot;&gt;jonschlinkert/vertical-rhythm · GitHub&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://codepen.io/sturobson/pen/jFKlJ&quot;&gt;A Sass/SCSS vertical rhythm mixin · CodePen&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;Articles&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://24ways.org/2011/composing-the-new-canon/&quot;&gt;24 ways: Composing the New Canon: Music, Harmony, Proportion&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.alistapart.com/articles/more-meaningful-typography/&quot;&gt;A List Apart: Articles: More Meaningful Typography&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.pearsonified.com/2012/01/characters-per-line.php&quot;&gt;How to Tune Typography Based on Characters Per Line&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://blog.8thlight.com/billy-whited/2011/10/28/r-a-ela-tional-design.html&quot;&gt;R(a|ela)tional Design&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://gregrickaby.com/2012/10/web-typography-using-rem.html&quot;&gt;Web Typography Using The Golden Ratio and REM’s&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+				&lt;hr /&gt;
+				&lt;h5&gt;Elsewhere&lt;/h5&gt;
+				&lt;ul&gt;
+					&lt;li&gt;&lt;a href=&quot;http://twitter.com/#!/cssradar&quot; rel=&quot;me&quot; title=&quot;cssradar@twitter&quot;&gt;cssradar@twitter&lt;/a&gt; / 1日5件以内のウェブデザイン情報をつぶやきます&lt;/li&gt;
+					&lt;li&gt;&lt;a href=&quot;http://tinyletter.com/cssradar&quot; rel=&quot;me&quot; title=&quot;Newsletter&quot;&gt;CSS Radar Newsletter&lt;/a&gt; / CSS Radarニュースレター。Twitterまとめ + α&lt;/li&gt;
+					&lt;li&gt;&lt;a href=&quot;https://plus.google.com/b/109704095110060909968/&quot; rel=&quot;me&quot; title=&quot;Google+ Page&quot;&gt;Google +&lt;/a&gt; / どんな風に使っていくかアイデア募集中&lt;/li&gt;
+				&lt;/ul&gt;
+			</content>
+		</entry>
 	
 		<entry>
 			<title>font-size using rem with fallback in Stylus</title>
@@ -31,6 +236,7 @@
   &lt;div class=&quot;code&quot;&gt;&lt;pre&gt;// Font-size using rem with fallback
 // Use px to define font size.
 // This will calculate rem value for you.
+// I'm assuming base font-size is 10px = 62.5%
 font-size(n)
   if unit(n) is 'px'
     font-size: n

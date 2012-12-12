@@ -18,6 +18,7 @@ Today I attempt to glimpse this "transparent" side of Stylus by making a mixin.
 // Font-size using rem with fallback
 // Use px to define font size.
 // This will calculate rem value for you.
+// I'm assuming base font-size is 10px = 62.5%
 font-size(n)
 	if unit(n) is 'px'
 		font-size: n
