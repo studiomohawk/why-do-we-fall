@@ -9,7 +9,7 @@ published: true
 
 ## tl;dr
 
-**[Demo](http://localhost:4000/attempt/1/vertical-rhythm.html)**  
+**[Demo](/attempt/1/vertical-rhythm.html)**  
 *This is **FAR FROM** perfect and it's just a starting point.*
 
 ~~~styl
